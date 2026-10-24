@@ -25,22 +25,13 @@ async function weatherFn(cName) {
 
 function weatherShowFn(data) {
 	$('#city-name').text(data.name);
-	$('#date').text(moment().
-		format('MMMM Do YYYY, h:mm:ss a')); // Corrected date format to include year
-	$('#temperature').
-		html(`${Math.round(data.main.temp)}°C`); // Rounded temperature
-	$('#description').
-		text(data.weather[0].description);
-	$('#wind-speed').
-		html(`Wind Speed: ${data.wind.speed} m/s`);
-    $('#city-input-btn').on('click', function () {
-    let cityName = $('#city-input').val();
-    if (cityName) {
-        weatherFn(cityName);
-    } else {
-        alert("Please enter a city name.");
-    }
-});
+	$('#date').text(moment().format('MMMM Do YYYY, h:mm:ss a')); 
+	$('#temperature').html(`${Math.round(data.main.temp)}°C`); 
+	$('#description').text(data.weather[0].description);
+	$('#wind-speed').html(`Wind Speed: ${data.wind.speed} m/s`);
+    
+	// ADD THIS LINE to display the weather icon:
+	$('#weather-icon').attr('src', `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
 
 	$('#weather-info').fadeIn();
 }
